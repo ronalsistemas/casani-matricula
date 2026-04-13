@@ -1,3 +1,15 @@
 spring:
   application:
     name: casani-matricula
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/matriculaapp_2026_1
+    username: postgres
+    password: admin
+
+  jpa:
+    database: postgresql
+    show-sql: false
+    hibernate:
+      ddl-auto: update
