@@ -40,5 +40,5 @@ public class Estudiante {
     private String telefono;
 
     @Column(name = "estado")
-    private boolean estado; // 1 = activo, 0 = inactivo
+    private boolean estado;
 }
