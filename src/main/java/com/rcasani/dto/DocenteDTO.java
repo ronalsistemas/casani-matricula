@@ -1,10 +1,7 @@
 package com.rcasani.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +30,6 @@ public class DocenteDTO {
     @Size(min = 3, max = 100, message = "La especialidad debe tener entre 3 y 100 caracteres")
     private String especialidad;
 
-    @NotBlank(message = "El estado es obligatorio")
-    @Pattern(regexp = "ACTIVO|INACTIVO", message = "El estado debe ser ACTIVO o INACTIVO")
-    private boolean estado;
+    //@NotNull
+    private Boolean estado;
 }

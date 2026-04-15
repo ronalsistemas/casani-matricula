@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PagoDTO {
 
-    private Integer id;
+    private Integer idPago;
 
     @NotNull(message = "La matrícula es obligatoria")
-    private Integer matriculaId;
+    private Integer idMatricula;
 
     @NotNull(message = "El monto es obligatorio")
     @DecimalMin(value = "0.0", inclusive = false, message = "El monto debe ser mayor a 0")

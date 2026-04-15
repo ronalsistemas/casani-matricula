@@ -23,7 +23,6 @@ public class CursoDTO {
     @Max(value = 10, message = "Los créditos no pueden ser mayores a 10")
     private Integer creditos;
 
-    @NotBlank(message = "El estado es obligatorio")
-    @Pattern(regexp = "ACTIVO|INACTIVO", message = "El estado debe ser ACTIVO o INACTIVO")
-    private boolean estado;
+    //@NotNull
+    private Boolean estado;
 }

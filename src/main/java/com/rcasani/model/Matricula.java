@@ -27,6 +27,10 @@ public class Matricula {
     private Estudiante estudiante;
 
     @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_usuario"))
+    private Usuario usuario;
+
+    @ManyToOne
     @JoinColumn(name = "id_periodo", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_periodo"))
     private PeriodoAcademico periodoAcademico;
 

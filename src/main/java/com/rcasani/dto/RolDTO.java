@@ -2,6 +2,7 @@ package com.rcasani.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,6 @@ public class RolDTO {
     @Size(max = 150, message = "La descripción no debe exceder 150 caracteres")
     private String descripcion;
 
-    @NotBlank(message = "El estado es obligatorio")
-    @Pattern(regexp = "ACTIVO|INACTIVO", message = "El estado debe ser ACTIVO o INACTIVO")
-    private boolean estado;
+    //@NotNull
+    private Boolean estado;
 }

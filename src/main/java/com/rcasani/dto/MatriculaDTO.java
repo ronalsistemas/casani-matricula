@@ -2,6 +2,7 @@ package com.rcasani.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,12 @@ public class MatriculaDTO {
     @JsonIncludeProperties(value = { "idEstudiante" })
     private EstudianteDTO estudiante;
 
+    @NotNull(message = "El usuario es obligatorio")
+    @JsonIncludeProperties(value = { "idUsuario", "username" })
+    private UsuarioDTO usuario;
+
     @NotNull(message = "El periodo académico es obligatorio")
-    @JsonIncludeProperties(value = { "idPeriodo" })
+    //@JsonIncludeProperties(value = { "idPeriodo", "nombre" })
     private PeriodoAcademicoDTO periodo;
 
     @NotNull(message = "La fecha de matrícula es obligatoria")
@@ -45,5 +50,6 @@ public class MatriculaDTO {
     private String estado;
 
     @NotEmpty(message = "Debe registrar al menos un curso")
+    @JsonManagedReference
     private List<DetalleMatriculaDTO> detalles;
 }

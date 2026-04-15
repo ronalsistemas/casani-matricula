@@ -38,6 +38,6 @@ public class EstudianteDTO {
     @Past(message = "La fecha de nacimiento debe ser una fecha pasada")
     private Date fechaNacimiento;
 
-    @NotNull
-    private boolean estado;
+    //@NotNull
+    private Boolean estado;
 }

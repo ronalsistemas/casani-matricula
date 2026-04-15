@@ -27,5 +27,5 @@ public class Rol {
     private String descripcion;
 
     @Column(name = "estado")
-    private boolean estado; // 1 = activo, 0 = inactivo
+    private Boolean estado; // 1 = activo, 0 = inactivo
 }
