@@ -1,5 +1,6 @@
 package com.rcasani.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class EstudianteDTO {
 
     @NotBlank(message = "El correo es obligatorio")
     @Email(message = "El correo no tiene un formato válido")
-    private String email;
+    private String correo;
 
     @NotBlank(message = "El teléfono es obligatorio")
     @Pattern(regexp = "\\d{9}", message = "El teléfono debe tener 9 dígitos")
@@ -40,4 +42,9 @@ public class EstudianteDTO {
 
     //@NotNull
     private Boolean estado;
+
+    public EstudianteDTO(String nombres, Boolean estado) {
+        this.nombres = nombres;
+        this.estado = estado;
+    }
 }

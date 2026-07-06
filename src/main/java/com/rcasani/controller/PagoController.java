@@ -62,6 +62,16 @@ public class PagoController {
         return ResponseEntity.noContent().build();
     }
 
+    /// queries //////////////////////
+
+    // Pago mas caro
+    @GetMapping("/costoso")
+    public ResponseEntity<PagoDTO> findCostoso() throws Exception {
+        Pago obj = pagoService.getPagoCostoso();
+
+        return ResponseEntity.ok().body(convertToDto(obj)) ;
+    }
+
     private PagoDTO convertToDto(Pago obj) {
         return modelMapper.map(obj, PagoDTO.class);
     }

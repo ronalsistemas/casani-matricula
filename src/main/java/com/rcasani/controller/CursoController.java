@@ -1,12 +1,15 @@
 package com.rcasani.controller;
 
 import com.rcasani.dto.CursoDTO;
+import com.rcasani.dto.DocenteDTO;
 import com.rcasani.model.Curso;
 import com.rcasani.service.ICursoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +63,43 @@ public class CursoController {
         cursoService.eliminar(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    //Querys//
+
+    //Buscar curso por nombre
+    @GetMapping("/encontrar/curso/{nombre}")
+    public ResponseEntity<List<CursoDTO>> findByName(@PathVariable("nombre") String nombre) throws Exception {
+        List<CursoDTO> list = cursoService.cursoNombre(nombre).stream().map(this::convertToDto).toList();
+
+        return ResponseEntity.ok().body(list);
+    }
+
+    //Buscar curso por nombre pero filtrando
+    @GetMapping("/encontrar/curso/filtro/{nombre}")
+    public ResponseEntity<List<CursoDTO>> findByNameLike(@PathVariable("nombre") String nombre) throws Exception {
+        List<CursoDTO> list = cursoService.cursoNombreLike(nombre).stream().map(this::convertToDto).toList();
+
+        return ResponseEntity.ok().body(list);
+    }
+
+    //Buscar curso por nombre y con el estado habilitado
+    @GetMapping("/encontrar/curso/habilitado")
+    public ResponseEntity<List<CursoDTO>> findByNameEnabled(@RequestParam("nombre") String nombre, @RequestParam("estado") boolean estado) throws Exception {
+        List<CursoDTO> list = cursoService.findByNombreAndEstado(nombre, estado).stream().map(this::convertToDto).toList();
+
+        return ResponseEntity.ok().body(list);
+    }
+
+    //Paginacion de cursos indicando la página y la cantidad de registros, pero colocando sus propias parámetros
+    @GetMapping("/paginacion02")
+    public ResponseEntity<Page<CursoDTO>> findPage2(
+            @RequestParam(name = "p") int page,
+            @RequestParam(name = "s") int size
+    ) throws Exception {
+        Page<CursoDTO> pageResult = cursoService.findPage(PageRequest.of(page, size)).map(this::convertToDto);
+
+        return ResponseEntity.ok().body(pageResult);
     }
 
     private CursoDTO convertToDto(Curso obj) {

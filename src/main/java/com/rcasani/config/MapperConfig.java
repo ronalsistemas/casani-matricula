@@ -21,11 +21,11 @@ public class MapperConfig {
         //Handle Mismatches
         //Lectura
         mapper.createTypeMap(Estudiante.class, EstudianteDTO.class)
-                .addMapping(Estudiante::getCorreo, (dest, v) -> dest.setEmail((String) v));
+                .addMapping(Estudiante::getCorreo, (dest, v) -> dest.setCorreo((String) v));
 
         //Escritura
         mapper.createTypeMap(EstudianteDTO.class, Estudiante.class)
-                .addMapping(EstudianteDTO::getEmail, (dest, v) -> dest.setCorreo((String) v));
+                .addMapping(EstudianteDTO::getCorreo, (dest, v) -> dest.setCorreo((String) v));
 
         return mapper;
     }

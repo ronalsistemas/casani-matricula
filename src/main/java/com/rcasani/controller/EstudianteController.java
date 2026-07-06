@@ -62,6 +62,17 @@ public class EstudianteController {
         return ResponseEntity.noContent().build();
     }
 
+    //Querys//
+
+    //Buscar Estudiante por nombre y telefono, solo se visualiza como resultado el nombre del estudiante y si está habilitado
+    //Nota: Tener en cuenta de crear un constructor para la consulta con el parámetro nombre y estado
+    @GetMapping("/encontrar/nombre/telefono")
+    public ResponseEntity<List<EstudianteDTO>> findByNombreTelf(@RequestParam("nombre") String nombre, @RequestParam("telefono") String telefono) throws Exception {
+        List<EstudianteDTO> list = estudianteService.getNombresAndEstado(nombre, telefono);
+
+        return ResponseEntity.ok().body(list);
+    }
+
     private EstudianteDTO convertToDto(Estudiante obj) {
         return modelMapper.map(obj, EstudianteDTO.class);
     }

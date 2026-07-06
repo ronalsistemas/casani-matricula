@@ -1,5 +1,6 @@
 package com.rcasani.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,4 +42,9 @@ public class Estudiante {
 
     @Column(name = "estado")
     private boolean estado;
+
+    public Estudiante(String nombres, boolean estado) {
+        this.nombres = nombres;
+        this.estado = estado;
+    }
 }

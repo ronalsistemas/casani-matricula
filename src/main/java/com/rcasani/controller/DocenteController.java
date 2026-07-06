@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +63,30 @@ public class DocenteController {
         docenteService.eliminar(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    //Querys//
+
+    //Buscar Docente por nombre y especialidad
+    @GetMapping("/encontrar/nombre/especialidad")
+    public ResponseEntity<List<DocenteDTO>> findByNombreEsp(@RequestParam("nombre") String nombre, @RequestParam("especialidad") String especialidad) throws Exception {
+        List<DocenteDTO> list = docenteService.getNombresAndEspecialidad(nombre, especialidad).stream().map(this::convertToDto).toList();
+
+        return ResponseEntity.ok().body(list);
+    }
+
+    //Paginacion de docentes indicando la página y la cantidad de registros
+    @GetMapping("/paginacion")
+    public ResponseEntity<Page<DocenteDTO>> findPage(Pageable pageable) throws Exception {
+        Page<DocenteDTO> page = docenteService.findPage(pageable).map(this::convertToDto);
+
+        return ResponseEntity.ok().body(page);
+    }
+
+    //Ordenando la lista de docentes
+    @GetMapping("/orden")
+    public ResponseEntity<List<DocenteDTO>> findOrder(@RequestParam String param) throws Exception {
+        return ResponseEntity.ok(docenteService.findAllOrder(param).stream().map(this::convertToDto).toList());
     }
 
     private DocenteDTO convertToDto(Docente obj) {

@@ -1,11 +1,14 @@
 package com.rcasani.service.impl;
 
+import com.rcasani.dto.EstudianteDTO;
 import com.rcasani.model.Estudiante;
 import com.rcasani.repository.IEstudianteRepo;
 import com.rcasani.repository.IGenericRepo;
 import com.rcasani.service.IEstudianteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,4 +37,10 @@ public class EstudianteServiceImpl extends CRUDImpl<Estudiante, Integer> impleme
 
         return estudianteRepo.save(existente);
     }
+
+    @Override
+    public List<EstudianteDTO> getNombresAndEstado(String nombre, String telefono) {
+        return estudianteRepo.getNombresAndEstado(nombre, telefono);
+    }
+
 }
