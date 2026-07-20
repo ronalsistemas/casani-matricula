@@ -1,6 +1,7 @@
 package com.rcasani.controller;
 
 import com.rcasani.dto.EstudianteDTO;
+import com.rcasani.dto.GenericResponse;
 import com.rcasani.model.Estudiante;
 import com.rcasani.service.IEstudianteService;
 import jakarta.validation.Valid;
@@ -23,21 +24,21 @@ public class EstudianteController {
     private final ModelMapper modelMapper;
 
     @GetMapping
-    public ResponseEntity<List<EstudianteDTO>> findAll() throws Exception {
+    public ResponseEntity<GenericResponse<EstudianteDTO>> findAll() throws Exception {
 
         List<EstudianteDTO> list = estudianteService.listar()
                 .stream()
                 .map(this::convertToDto)
                 .toList();
 
-        return ResponseEntity.ok().body(list);
+        return ResponseEntity.ok().body(new GenericResponse<>(200, "success", list));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EstudianteDTO> findById(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<GenericResponse<EstudianteDTO>> findById(@PathVariable("id") Integer id) throws Exception {
         EstudianteDTO obj = convertToDto(estudianteService.buscar(id));
 
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(new GenericResponse<>(200, "success", List.of(obj)));
     }
 
     @PostMapping

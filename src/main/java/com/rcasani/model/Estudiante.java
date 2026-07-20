@@ -1,13 +1,12 @@
 package com.rcasani.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -32,7 +31,7 @@ public class Estudiante {
     private String apellidos;
 
     @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(name = "correo", length = 100)
     private String correo;

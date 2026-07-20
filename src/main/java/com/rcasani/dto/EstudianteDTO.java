@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -38,7 +38,7 @@ public class EstudianteDTO {
 
     @NotNull(message = "La fecha de nacimiento es obligatoria")
     @Past(message = "La fecha de nacimiento debe ser una fecha pasada")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     //@NotNull
     private Boolean estado;

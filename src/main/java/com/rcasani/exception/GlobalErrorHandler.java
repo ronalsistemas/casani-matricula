@@ -1,5 +1,6 @@
 package com.rcasani.exception;
 
+import com.rcasani.dto.GenericResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -12,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestControllerAdvice //Intersecta cualquier excepcion a lo largo del proyecto
 public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
@@ -25,10 +27,10 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ModelNotFoundException.class)
-    public ResponseEntity<CustomErrorResponse> handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
+    public ResponseEntity<GenericResponse<CustomErrorResponse>>handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
         CustomErrorResponse cer = new CustomErrorResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
 
-        return new ResponseEntity<>(cer, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new GenericResponse<>(404, "not-found", List.of(cer)), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({ArithmeticException.class, BindException.class}) //ArithmeticException.class
