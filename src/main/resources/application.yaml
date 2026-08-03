@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active: dev
+
   application:
     name: casani-matricula
 
@@ -13,3 +16,6 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
+
+jwt:
+  secret: 15fc663e5f84c3e19a02010e3e569d317a998b007dbe84d860f31613f55402c185ce19e941fccd02a1f8bd780c549676b72ee0adf86579f462d75fa55dd78546
