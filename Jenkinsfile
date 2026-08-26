@@ -13,6 +13,7 @@ pipeline {
 //        }
         stage('Compile') {
             steps {
+                echo 'Hola Mundo'
                 sh 'mvn clean compile -B -ntp'
             }
         }
