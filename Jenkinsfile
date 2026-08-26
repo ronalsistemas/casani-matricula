@@ -6,11 +6,11 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git branch: 'feature/matricula-testing', url: 'https://github.com/ronalsistemas/casani-matricula.git'
-            }
-        }
+//        stage('Checkout SCM') {
+//            steps {
+//                git branch: 'feature/matricula-testing', url: 'https://github.com/ronalsistemas/casani-matricula.git'
+//            }
+//        }
         stage('Compile') {
             steps {
                 sh 'mvn clean compile -B -ntp'
