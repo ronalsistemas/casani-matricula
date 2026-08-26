@@ -21,6 +21,8 @@ pipeline {
             steps {
                 sh 'mvn test -Dtest=EstudianteServiceTest -B -ntp'
                 junit 'target/surefire-reports/*.xml'
+
+                discoverReferenceBuild()
                 recordCoverage(tools: [[parser: 'JACOCO']])
             }
         }

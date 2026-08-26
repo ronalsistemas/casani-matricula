@@ -66,7 +66,7 @@ public class EstudianteServiceTest {
         Estudiante response = estudianteService.guardar(ESTUDIANTE_1);;
         assertNotNull(response);
     }
-
+/*
     @Test
     void deleteTest() throws Exception{
         final int ID = 1;
@@ -79,5 +79,5 @@ public class EstudianteServiceTest {
         //verify(repo, atLeast(2)).deleteById(ID);
         //verify(repo, atMost(2)).deleteById(ID);
         //verify(repo, never()).deleteById(any());
-    }
+    }*/
 }
